@@ -1,4 +1,3 @@
 # Enclosure for 4 floppy drives
-
-My aim was to be able to use four floppy drives and not only 
-Fusion360 Design design files
+The enclosure is designed to house 4 floppy drives, 2 x 3.5" and 2 x 5.25" drives.  
+I used Fusion360 to create it. 
