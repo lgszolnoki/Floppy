@@ -1,1 +1,1 @@
-There are two ATF22V10C-15PU PLDs on the board. One for the address and buffer control and one for the floppy interface. FDC9266PLD.PLD is the file for the address control and FDC9266S.PLD for the floppy interface.
+There are two ATF22V10C-15PU PLDs on the board. One for the address and buffer control and one for the floppy interface. FDC9266PLD.PLD is the file for the address control and FDC9266S.PLD for the floppy interface. The corresponding compiled files for the programming device are those with the extension *.jed.
