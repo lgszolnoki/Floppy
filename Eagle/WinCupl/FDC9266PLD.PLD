@@ -1,0 +1,42 @@
+Name     fdc9266pld ;
+PartNo   00 ;
+Date     1.4.2024 ;
+Revision 01 ;
+Designer Engineer ;
+Company  ProEuropa Consulting ;
+Assembly None ;
+Location  ;
+Device  g22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN  1  = CLK;
+PIN  2  = _HDL;
+PIN  3  = _WDATA;
+PIN  4  = _MOTOR;
+PIN  5  = US0;
+PIN  6  = US1;
+PIN  7  = _SIDE;
+PIN  8  = _WGATE;
+PIN  9  =  DSENA;
+/* *************** OUTPUT PINS *********************/
+PIN     23 = !HDL; /*                                 */ 
+PIN     22 =  !DS3                       ; /*                                 */ 
+PIN     21 =  !DS0                        ; /*                                 */ 
+PIN     20 =  !DS1                       ; /*                                 */ 
+PIN     19 =  !DS2                       ; /*                                 */ 
+PIN     18 =  !MOTOR                       ; /*                                 */ 
+PIN     17 =  !WDATA                       ; /*                                 */ 
+PIN     16 =  !WGATE                       ; /*                                 */ 
+PIN     15 =  !SIDE                       ; /*                                 */ 
+
+/* *************** OUTPUT PINS *********************/
+
+HDL = _HDL;
+MOTOR = _MOTOR;
+WDATA = _WDATA;
+WGATE = _WGATE;
+SIDE = _SIDE;
+DS0 =  MOTOR & !US0 & !US1;
+DS1 =  MOTOR & US0 & !US1;
+DS2 =  MOTOR & !US0 & US1;
+DS3 =  MOTOR & US0 & US1;

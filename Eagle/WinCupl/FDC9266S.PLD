@@ -1,0 +1,53 @@
+Name     FDC9266S ;
+PartNo   00 ;
+Date     9.3.2024 ;
+Revision 01 ;
+Designer Engineer ;
+Company  ProEuropa Consulting ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS ********************* */ 
+PIN    1 =  A7                       ; /*                                 */ 
+PIN    2 =  A6                       ; /*                                 */ 
+PIN    3 =  A5                       ; /*                                 */ 
+PIN    4 =  A4                       ; /*                                 */ 
+PIN    5 =  A3                       ; /*                                 */ 
+PIN    6 =  A2                      ; /*                                 */ 
+PIN    7 =  A1                       ; /*                                 */ 
+PIN    8 =  IA0                       ; /*                                 */ 
+PIN    9 =  !IODI                       ; /*                                 */ 
+PIN  10 =  !M1                        ; /*                                 */ 
+PIN  11 = !IORQ;
+PIN  13 =  !IWR                       ; /*                                 */ 
+PIN  14 =  !IRD                       ; /*                                 */ 
+
+
+
+FIELD IOADDR = [A7..A1,IA0];
+
+FDC_ADDR    =  IOADDR:[0B0..0B1];
+DOR_ADDR    =  IOADDR:[0B2];
+DACK_ADDR =  IOADDR:[0B3];
+TC_ADDR       =  IOADDR:[0B4];
+STAT_ADDR  = IOADDR:[0B5];
+
+/* *************** OUTPUT PINS *********************/
+PIN  23  =  !FDC_CS             ; /*                                 */ 
+PIN  22  =  !DOR_WR           ; /*                                 */ 
+PIN  21  =  DIR_RD               ; /*                                 */ 
+PIN  20  =  !B_CS                   ; /*                                 */ 
+PIN  19  =  !FDC_DACK; 
+PIN  18  =  RDY; 
+PIN  17 =   TC;
+
+/* ****************************************************** */
+FDC_CS = !IODI & !M1 & IORQ & FDC_ADDR;
+DOR_WR = !IODI & !M1 & DOR_ADDR & IORQ & IWR;
+B_CS = !IODI & !M1 & IORQ & (FDC_ADDR # DOR_ADDR # STAT_ADDR); 
+DIR_RD = !IODI & !M1 & IORQ & STAT_ADDR & IRD;
+FDC_DACK = !IODI & !M1 & IORQ & DACK_ADDR;
+TC = !IODI & !M1 & IORQ & TC_ADDR;
+RDY = DOR_WR # TC # FDC_CS # FDC_DACK # DIR_RD;
+

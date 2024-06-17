@@ -1,0 +1,95 @@
+%SIGNAL
+PIN   7 =  A1 
+PIN   6 =  A2 
+PIN   5 =  A3 
+PIN   4 =  A4 
+PIN   3 =  A5 
+PIN   2 =  A6 
+PIN   1 =  A7 
+PIN  20 = !B_CS 
+PIN  21 =  DIR_RD 
+PIN  22 = !DOR_WR 
+PIN  23 = !FDC_CS 
+PIN  19 = !FDC_DACK 
+PIN   8 =  IA0 
+PIN   9 = !IODI 
+PIN  11 = !IORQ 
+PIN  14 = !IRD 
+PIN  13 = !IWR 
+PIN  10 = !M1 
+PIN  18 =  RDY 
+PIN  17 =  TC 
+%END
+
+%FIELD
+FIELD IOADDR = A7,A6,A5,A4,A3,A2,A1,IA0
+%END
+
+%EQUATION
+B_CS =>
+    !A1 & !A2 & !A3 & A4 & A5 & !A6 & A7 & IODI & !IORQ & M1
+  # !A1 & A2 & !A3 & A4 & A5 & !A6 & A7 & IA0 & IODI & !IORQ & M1
+  # A1 & !A2 & !A3 & A4 & A5 & !A6 & A7 & !IA0 & IODI & !IORQ & M1
+
+DACK_ADDR =>
+    A1 & !A2 & !A3 & A4 & A5 & !A6 & A7 & IA0
+
+DIR_RD =>
+    !A1 & A2 & !A3 & A4 & A5 & !A6 & A7 & IA0 & IODI & !IORQ & !IRD & M1
+
+DOR_ADDR =>
+    A1 & !A2 & !A3 & A4 & A5 & !A6 & A7 & !IA0
+
+DOR_WR =>
+    A1 & !A2 & !A3 & A4 & A5 & !A6 & A7 & !IA0 & IODI & !IORQ & !IWR & M1
+
+FDC_ADDR =>
+    !A1 & !A2 & !A3 & A4 & A5 & !A6 & A7
+
+FDC_CS =>
+    !A1 & !A2 & !A3 & A4 & A5 & !A6 & A7 & IODI & !IORQ & M1
+
+FDC_DACK =>
+    A1 & !A2 & !A3 & A4 & A5 & !A6 & A7 & IA0 & IODI & !IORQ & M1
+
+RDY =>
+    !DOR_WR
+  # TC
+  # !FDC_CS
+  # !FDC_DACK
+  # DIR_RD
+
+STAT_ADDR =>
+    !A1 & A2 & !A3 & A4 & A5 & !A6 & A7 & IA0
+
+TC =>
+    !A1 & A2 & !A3 & A4 & A5 & !A6 & A7 & !IA0 & IODI & !IORQ & M1
+
+TC_ADDR =>
+    !A1 & A2 & !A3 & A4 & A5 & !A6 & A7 & !IA0
+
+B_CS.oe  =>
+    1 
+
+DIR_RD.oe  =>
+    1 
+
+DOR_WR.oe  =>
+    1 
+
+FDC_CS.oe  =>
+    1 
+
+FDC_DACK.oe  =>
+    1 
+
+IRD.oe  =>
+    0 
+
+RDY.oe  =>
+    1 
+
+TC.oe  =>
+    1 
+
+%END

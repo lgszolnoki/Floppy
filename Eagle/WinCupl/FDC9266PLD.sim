@@ -1,0 +1,80 @@
+%SIGNAL
+PIN   1 =  CLK 
+PIN  21 = !DS0 
+PIN  20 = !DS1 
+PIN  19 = !DS2 
+PIN  22 = !DS3 
+PIN   9 =  DSENA 
+PIN  23 = !HDL 
+PIN  18 = !MOTOR 
+PIN  15 = !SIDE 
+PIN   5 =  US0 
+PIN   6 =  US1 
+PIN  17 = !WDATA 
+PIN  16 = !WGATE 
+PIN   2 =  _HDL 
+PIN   4 =  _MOTOR 
+PIN   7 =  _SIDE 
+PIN   3 =  _WDATA 
+PIN   8 =  _WGATE 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+DS0 =>
+    !MOTOR & !US0 & !US1
+
+DS1 =>
+    !MOTOR & US0 & !US1
+
+DS2 =>
+    !MOTOR & !US0 & US1
+
+DS3 =>
+    !MOTOR & US0 & US1
+
+HDL =>
+    _HDL
+
+MOTOR =>
+    _MOTOR
+
+SIDE =>
+    _SIDE
+
+WDATA =>
+    _WDATA
+
+WGATE =>
+    _WGATE
+
+DS0.oe  =>
+    1 
+
+DS1.oe  =>
+    1 
+
+DS2.oe  =>
+    1 
+
+DS3.oe  =>
+    1 
+
+HDL.oe  =>
+    1 
+
+MOTOR.oe  =>
+    1 
+
+SIDE.oe  =>
+    1 
+
+WDATA.oe  =>
+    1 
+
+WGATE.oe  =>
+    1 
+
+%END
